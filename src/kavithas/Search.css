@@ -1,0 +1,31 @@
+#body {
+    width: 100%;
+    
+}
+.showList {
+    list-style-type: none;
+    padding-left: 0px;
+    
+    
+}
+.ans{
+    display: flex;
+    padding-left: 100px;
+    /* color: green; */
+    text-align: justify;
+    
+}
+#font
+  {
+      padding-left: 40px;
+      /* color: cornflowerblue; */
+
+  }
+
+   #icon{
+      position: relative;
+      /* bottom: 45px; */
+      left: 50px;
+      color: green;
+      font-size: 20px;
+  } 
