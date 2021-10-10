@@ -1,35 +1,49 @@
 #body {
-    width: 100%;
-    
+  width: 100%;
 }
 .showList {
-    list-style-type: none;
-    padding-left: 0px;
-    
-    
+  list-style-type: none;
+  padding-left: 0px;
 }
-.ans{
-    display: flex;
-    padding-left: 140px;
-    /* color: green; */
-    text-align: justify;
-    
+.ans {
+  display: flex;
+  padding-left: 100px;
+  /* color: green; */
+  text-align: justify;
+  /* 
+  font-size: 20px;
+  color: #707070;
+
+  font-family: "Segoe UI"; */
+  /* font-weight: 400; */
+  top: 192px;
+  left: 140px;
+  width: 100%;
+
+  text-align: left;
+  font: normal normal normal 20px/28px Segoe UI;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 1;
 }
-#font
-  {
-    display: flex;
-    padding-left: 70px;
-    /* color: green; */
-    text-align: justify; 
+#question {
+  display: flex;
+  padding-left: 20px;
+  text-align: justify;
 
-      /* color: cornflowerblue; */
+  font-size: 24px;
+  color: #707070;
 
-  }
+  font-family: "Segoe UI";
+  font-weight: 600;
 
-   #icon{
-      position: relative;
-      /* bottom: 45px; */
-      left: 50px;
-      color: green;
-      font-size: 20px;
-  } 
+  /* color: cornflowerblue; */
+}
+
+#icon {
+  position: relative;
+  /* bottom: 45px; */
+  left: 50px;
+  color: green;
+  font-size: 20px;
+}

@@ -1,102 +1,154 @@
-import React from 'react'
-import { Nav, Navbar, Container, InputGroup, FormControl, Form, Button, Row, Col } from 'react-bootstrap'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import logo from './logo.jpg'
-
+import React, { useState } from "react";
+import {
+  Nav,
+  Navbar,
+  Container,
+  InputGroup,
+  FormControl,
+  Form,
+  Button,
+  Row,
+  Col,
+} from "react-bootstrap";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import logo from "./logo.jpg";
 
 function Appbars() {
+  const [searchData, setSearchData] = useState("");
 
-    return (
-        <div>
-            <Navbar collapseOnSelect expand="lg" bg="default" variant="default">
-                <Container fluid>
+  const storeSeardcchData = (e) => {
+    setSearchData(e.target.value);
+  };
 
+  const checkSearchBar = () => {
+    if (searchData === "") {
+      alert(" search Bar is Empty");
+    }
+  };
 
-                    <Navbar.Brand className="logo" style={{ padding: "5px" }} >
-                        <Link to="/" className="px-4"><img src={logo} id="image" alt="" /></Link>
-                    </Navbar.Brand>
+  return (
+    <div>
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="white"
+        variant="light"
+        id="navbars"
+      >
+        <Container fluid>
+          <Navbar.Brand className="logo" style={{ padding: "5px" }}>
+            <Link to="/" className="px-4">
+              <img src={logo} id="image" alt="" />
+            </Link>
+          </Navbar.Brand>
 
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <div className="" style={{}}>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <div className="" style={{}}>
+              <Nav className="me-auto">
+                <Row className="g-3">
+                  <Col md={2}>
+                    <div className="tech">
+                      <Form.Select
+                        aria-label="Default select example"
+                        variant=""
+                        id="dropdown-basic"
+                        className="technol"
+                      >
+                        <option>Technology</option>
+                        <option value="JAVA">Java</option>
+                        <option value="PYTHON">React JS</option>
+                        <option value="ANGULAR JS">Angular</option>
+                        <option value="JAVASCRIPT">Vue JS</option>
+                        <option value="JAVASCRIPT">JavaScript</option>
+                      </Form.Select>
+                    </div>
+                  </Col>
+                  <Col md={2}>
+                    <div className="Linktech">
+                      <Form.Select
+                        aria-label="Default select example"
+                        variant=""
+                        id="dropdown-basic"
+                        className="linksize"
+                      >
+                        <option>Level</option>
+                        <option value="JAVA">Easy</option>
+                        <option value="INTERMEDIATE">Intermediate</option>
+                        <option value="HARD">Expert</option>
+                      </Form.Select>
+                    </div>
+                  </Col>
 
-                            <Nav className="me-auto">
-                                <Row className='g-3'>
-                                    <Col md={2}>
+                  <Col md={2}>
+                    <Form.Control
+                      type="text"
+                      name="date-of-birth"
+                      placeholder="From Date"
+                      onFocus={(e) => {
+                        e.target.type = "date";
+                      }}
+                    />
 
-                                        <div className='tech'  >
-                                            <Form.Select aria-label="Default select example"
-                                                variant="" id="dropdown-basic" className="technol"  >
-                                                <option>Technology</option>
-                                                <option value="JAVA">Java</option>
-                                                <option value="REACT JS">React JS</option>
-                                                <option value="ANGULAR JS">Angular JS</option>
-                                                <option value="VUE JS">Vue JS</option>
-                                                <option value="JAVASCRIPT">JavaScript</option>
-                                            </Form.Select>
-                                        </div>
-                                    </Col>
-                                    <Col md={2}>
-                                        <div className='Linktech'>
-                                            <Form.Select aria-label="Default select example"
-                                                variant="" id="dropdown-basic"
-                                                className="linksize" >
-                                                <option>Level</option>
-                                                <option value="EASY">Easy</option>
-                                                <option value="INTERMEDIATE">Intermediate</option>
-                                                <option value="EXPERT">Expert</option>
-                                            </Form.Select>
-                                        </div>
-                                    </Col>
+                    {/* onFocus={(e) => e.target.type = "date"} */}
+                  </Col>
+                  <Col md={2}>
+                    <Form.Control
+                      type="text"
+                      name="date-of-birth"
+                      placeholder="To Date"
+                      onFocus={(e) => {
+                        e.target.type = "date";
+                      }}
+                    />
+                  </Col>
 
-                                    <Col md={2}>
-                                        <div className="fromdate">
+                  <Col md={3}>
+                    <div>
+                      <InputGroup>
+                        <FormControl
+                          type="text"
+                          placeholder="Search questions"
+                          aria-label="Search"
+                          className="search "
+                          onChange={(e) => storeSeardcchData(e)}
+                        />
+                        <i
+                          className="fas fa-search"
+                          id="srchicon"
+                          style={{
+                            transform: "translateX(-30px) translateY(12px)",
+                          }}
+                        ></i>
+                      </InputGroup>
+                    </div>
+                  </Col>
 
-
-                                            <Form.Control type="date" name='date-of-birth' placeholder="From Date"
-                                            />
-                                            {/* onFocus={(e) => e.target.type = "date"} */}
-
-
-                                        </div>
-                                    </Col>
-                                    <Col md={2}>
-                                        <div className="todate">
-                                            <Form.Control type="date" name='date-of-birth' placeholder="From Date"
-                                            />
-                                            {/* onFocus={(e) => e.target.type = "date"} */}
-
-                                        </div>
-                                    </Col>
-
-                                    <Col md={3}>
-                                        <div>
-                                            <InputGroup>
-                                                <FormControl type="text" placeholder="Search questions" aria-label='Search' className='search ' />
-                                                <i className="fas fa-search" id="srchicon" style={{ transform: "translateX(-25px)", marginTop: "12px" }}></i>
-                                            </InputGroup>
-                                        </div>
-                                    </Col>
-
-                                    <Col md={1}>
-                                        <div>
-                                            <Button variant="warning" style={{ color: "white" }} className="searchbutton px-2">
-                                                <Link to="/SearchView" style={{ textDecoration: "none", color: "white" }}>Search</Link></Button>
-                                        </div>
-                                    </Col>
-
-                                </Row>
-                            </Nav>
-                        </div>
-
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-
-
-
-        </div>
-    )
+                  <Col md={1}>
+                    <div>
+                      <Button
+                        variant="warning"
+                        style={{ color: "white" }}
+                        className="searchbutton px-2"
+                        onClick={() => checkSearchBar()}
+                      >
+                        <Link
+                          to="/SearchView"
+                          style={{ textDecoration: "none", color: "white" }}
+                        >
+                          Search
+                        </Link>
+                      </Button>
+                    </div>
+                  </Col>
+                </Row>
+              </Nav>
+            </div>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
+  );
 }
 
 export default Appbars;
@@ -197,12 +249,7 @@ export default Appbars;
 //                 </Container>
 //             </Navbar>
 
-
 //         </div>
-
-
-
-
 
 //         // <div>
 //         //       <Navbar bg="" expand="lg">
@@ -238,7 +285,6 @@ export default Appbars;
 //         //                         </DropdownButton>
 //         //                     </div>
 
-
 //         //                     <div>
 //         //                         <DatePicker id='fromdate'
 //         //                             placeholderText='From Date'
@@ -263,7 +309,6 @@ export default Appbars;
 //         //                     </div>
 //         //                     {/* <i class="far fa-calendar-minus icon2"></i> */}
 
-
 //         //                 </Nav>
 //         //                 <Form className="d-flex">
 //         //                     <FormControl
@@ -275,18 +320,13 @@ export default Appbars;
 //         //                     <i className="fas fa-search" id="srchicon"></i>
 //         //                 </Form>
 
-
-
 //         //                 <Button variant="primary" size="sm" id="button">
 //         //                     Search
 //         //                 </Button>{' '}
 
-
-
 //         //             </Navbar.Collapse>
 //         //         </Container>
 //         //     </Navbar>
-
 
 //         // </div >
 

@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
+import PopUp from "../kavithas/Modals";
 import "./Upload.css";
 function UploadQuestion(props) {
   const [UploadData, setUploadData] = useState({
@@ -33,6 +34,8 @@ function UploadQuestion(props) {
     Technology: "",
     Questions: "",
   });
+
+  const [modalshow, setModalshow] = useState(false);
 
   const [questionAnswerValidate, setquestionAnswerValidate] = useState([
     {
@@ -163,14 +166,17 @@ function UploadQuestion(props) {
       }
     }
 
-    if (errorCount > 0 || mainDataErrCount > 0) {
+    if (errorCount > 0 || mainDataErrCount > 1) {
       // here make a copy of upload data
 
       // pass that data to server
 
       alert("eneter user info");
+
+      console.log("log", errorCount, mainDataErrCount, UploadDataCopy);
     } else {
-      alert("submitted successfully");
+      // alert("submitted successfully");
+      setModalshow(true);
     }
   };
 
@@ -256,7 +262,7 @@ function UploadQuestion(props) {
 
   return (
     <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
-      <h4>Upload your Questions</h4>
+      <p id="uploadquestions">Upload your Questions</p>
 
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={3}>
@@ -282,7 +288,7 @@ function UploadQuestion(props) {
                 {...params}
                 label="Department"
                 name="Department"
-                onChange={(event) => {
+                onSelect={(event) => {
                   handleChange(event);
                 }}
               />
@@ -314,7 +320,7 @@ function UploadQuestion(props) {
                 {...params}
                 label="Technology"
                 name="Technology"
-                onClick={(event) => {
+                onSelect={(event) => {
                   handleChange(event);
                 }}
               />
@@ -353,7 +359,7 @@ function UploadQuestion(props) {
                       {...params}
                       label="DifficultyLevel"
                       name="DifficultyLevel"
-                      onClick={(event) => {
+                      onSelect={(event) => {
                         handleChangeQuestions(event, index);
                       }}
                     />
@@ -401,7 +407,9 @@ function UploadQuestion(props) {
                       onClick={() => {
                         deleterow(index);
                       }}
-                      style={{ backgroundColor: "#FAA81D" }}
+                      style={{
+                        backgroundColor: "#FAA81D",
+                      }}
                       variant="contained"
                       startIcon={<AddCircleRounded />}
                     >
@@ -432,6 +440,8 @@ function UploadQuestion(props) {
           Submit
         </Button>
       </Box>
+
+      <div>{modalshow && <PopUp />}</div>
 
       {/* { console.log('candidateName',UploadData.CandidateName)} */}
     </Container>

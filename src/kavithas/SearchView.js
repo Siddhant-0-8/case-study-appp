@@ -206,7 +206,7 @@ function SearchView() {
 
             <Card.Body className="" >
               <blockquote className="blockquote ">
-                <li id="font"><b>{oneQuestion.question}</b></li>
+                <li id="question">{oneQuestion.question}</li>
                 <li className="ans">{oneQuestion.answer}</li>
 
               </blockquote>
