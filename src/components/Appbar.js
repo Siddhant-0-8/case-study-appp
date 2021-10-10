@@ -8,7 +8,7 @@ function Appbars() {
 
     return (
         <div>
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+            <Navbar collapseOnSelect expand="lg" bg="default" variant="default">
                 <Container fluid>
 
 
@@ -26,12 +26,12 @@ function Appbars() {
 
                                         <div className='tech'  >
                                             <Form.Select aria-label="Default select example"
-                                                variant="" id="dropdown-basic" className="technol"   >
+                                                variant="" id="dropdown-basic" className="technol"  >
                                                 <option>Technology</option>
                                                 <option value="JAVA">Java</option>
-                                                <option value="PYTHON">React JS</option>
-                                                <option value="ANGULAR JS">Angular</option>
-                                                <option value="JAVASCRIPT">Vue JS</option>
+                                                <option value="REACT JS">React JS</option>
+                                                <option value="ANGULAR JS">Angular JS</option>
+                                                <option value="VUE JS">Vue JS</option>
                                                 <option value="JAVASCRIPT">JavaScript</option>
                                             </Form.Select>
                                         </div>
@@ -42,15 +42,15 @@ function Appbars() {
                                                 variant="" id="dropdown-basic"
                                                 className="linksize" >
                                                 <option>Level</option>
-                                                <option value="JAVA">Easy</option>
+                                                <option value="EASY">Easy</option>
                                                 <option value="INTERMEDIATE">Intermediate</option>
-                                                <option value="HARD">Expert</option>
+                                                <option value="EXPERT">Expert</option>
                                             </Form.Select>
                                         </div>
                                     </Col>
 
                                     <Col md={2}>
-                                        <div className="formdate">
+                                        <div className="fromdate">
 
 
                                             <Form.Control type="date" name='date-of-birth' placeholder="From Date"
@@ -73,6 +73,7 @@ function Appbars() {
                                         <div>
                                             <InputGroup>
                                                 <FormControl type="text" placeholder="Search questions" aria-label='Search' className='search ' />
+                                                <i className="fas fa-search" id="srchicon" style={{ transform: "translateX(-25px)", marginTop: "12px" }}></i>
                                             </InputGroup>
                                         </div>
                                     </Col>

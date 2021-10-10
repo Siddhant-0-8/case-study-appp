@@ -10,17 +10,13 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import "./Upload.css";
 function UploadQuestion(props) {
-
-
-
   const [UploadData, setUploadData] = useState({
     CandidateName: "",
     Department: "",
     ClientName: "",
     Technology: "",
-    Questions: ''
+    Questions: "",
   });
-
 
   const [questions, setQuestions] = useState([
     {
@@ -28,243 +24,193 @@ function UploadQuestion(props) {
       Answer: "",
       DifficultyLevel: "",
     },
-
   ]);
-
 
   const [validation, setvalidation] = useState({
     CandidateName: "",
     Department: "",
     ClientName: "",
     Technology: "",
-    Questions: ""
-
-  })
+    Questions: "",
+  });
 
   const [questionAnswerValidate, setquestionAnswerValidate] = useState([
     {
-
       Question: "",
       Answer: "",
       DifficultyLevel: "",
     },
-  ])
+  ]);
 
-
-  const validateQuestionAndAnswerField = () => {
-
-    questions.forEach((obj, index) => {
-
-
-      for (const key in obj) {
-
-        if (obj[key] === '') {
-
-          const questionAdcnswerValidateCopy = [...questionAnswerValidate]
-
-
-          questionAdcnswerValidateCopy[index][key] = "** is required"
-
-
-          setquestionAnswerValidate(questionAdcnswerValidateCopy)
-
-
-        }
-        else {
-
-          const questionAdcnswerValidateCopy = [...questionAnswerValidate]
-
-
-          questionAdcnswerValidateCopy[index][key] = ""
-
-
-          setquestionAnswerValidate(questionAdcnswerValidateCopy)
-
-        }
-
-      }
-
-
-
-
-    });
-
-
-  }
-
-
-  const onSubmitFunc = () => {
-
-
-    validateQuestionAndAnswerField()
-
-    const validationCopy = { ...validation }
-
-
+  useEffect(() => {
+    const validationCopy = { ...validation };
 
     for (const key in UploadData) {
-
-
-      let keys = key
+      let keys = key;
 
       if (UploadData[keys] === "") {
-
         // console.log(`validation-${key}- ${validation[key]}`);
 
-
-        validationCopy[key] = "is required"
+        validationCopy[key] = "is required";
 
         console.log(`${key}`, validationCopy[key]);
 
         console.log("validationCopy", validationCopy);
 
-        setvalidation(validationCopy)
+        setvalidation(validationCopy);
         // setvalidation({
         //   ...validation,
         //   key:"** is requird"
         // })
-
-      }
-      else {
-
-        validationCopy[key] = ""
+      } else {
+        validationCopy[key] = "";
 
         console.log(`${key}`, validationCopy[key]);
 
         console.log("validationCopy", validationCopy);
 
-        setvalidation(validationCopy)
-
+        setvalidation(validationCopy);
       }
+    }
+  }, [UploadData]);
 
+  const validateQuestionAndAnswerField = () => {
+    questions.forEach((obj, index) => {
+      for (const key in obj) {
+        if (obj[key] === "") {
+          const questionAdcnswerValidateCopy = [...questionAnswerValidate];
+
+          questionAdcnswerValidateCopy[index][key] = "** is required";
+
+          setquestionAnswerValidate(questionAdcnswerValidateCopy);
+        } else {
+          const questionAdcnswerValidateCopy = [...questionAnswerValidate];
+
+          questionAdcnswerValidateCopy[index][key] = "";
+
+          setquestionAnswerValidate(questionAdcnswerValidateCopy);
+        }
+      }
+    });
+  };
+
+  const onSubmitFunc = () => {
+    validateQuestionAndAnswerField();
+
+    const validationCopy = { ...validation };
+
+    for (const key in UploadData) {
+      let keys = key;
+
+      if (UploadData[keys] === "") {
+        // console.log(`validation-${key}- ${validation[key]}`);
+
+        validationCopy[key] = "is required";
+
+        console.log(`${key}`, validationCopy[key]);
+
+        console.log("validationCopy", validationCopy);
+
+        setvalidation(validationCopy);
+        // setvalidation({
+        //   ...validation,
+        //   key:"** is requird"
+        // })
+      } else {
+        validationCopy[key] = "";
+
+        console.log(`${key}`, validationCopy[key]);
+
+        console.log("validationCopy", validationCopy);
+
+        setvalidation(validationCopy);
+      }
     }
 
+    // checking if there is an empty feild if
 
-    // checking if there is an empty feild if 
-
-
-
-
-
-    debugger
+    // debugger
 
     // if there is any empty field then dont update
 
-    const UploadDataCopy = { ...UploadData }
+    const UploadDataCopy = { ...UploadData };
 
     let errorCount = 0;
 
-    questionAnswerValidate.forEach(object => {
-
+    questionAnswerValidate.forEach((object) => {
       for (const key in object) {
-
         if (object[key] !== "") {
-
-          errorCount++
+          errorCount++;
         }
-
       }
-
     });
 
-    console.log('errorCount', errorCount)
-
-
-
+    console.log("errorCount", errorCount);
 
     if (errorCount < 1) {
+      UploadDataCopy.Questions = questions;
 
-      UploadDataCopy.Questions = questions
+      console.log("onSubmit", UploadDataCopy);
 
-      console.log('onSubmit', UploadDataCopy);
-
-      setUploadData(UploadDataCopy)
-
-
-
+      setUploadData(UploadDataCopy);
     }
 
-
-    let mainDataErrCount = 0
+    let mainDataErrCount = 0;
 
     for (const key in validation) {
-
       if (validation[key] !== "") {
-        mainDataErrCount++
+        mainDataErrCount++;
       }
     }
 
-
-
     if (errorCount > 0 || mainDataErrCount > 0) {
-
-
-
       // here make a copy of upload data
 
       // pass that data to server
 
-      alert("eneter user info")
-
+      alert("eneter user info");
     } else {
-      alert("submitted successfully")
+      alert("submitted successfully");
     }
-
-
-
-
-
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
+  };
 
   const addrow = (event, index) => {
+    validateQuestionAndAnswerField();
 
-    // For storing data question answer difficulty level 
-    const questionsCopy = [...questions]
+    // For storing data question answer difficulty level
+    const questionsCopy = [...questions];
     questionsCopy.push({
       Question: "",
       Answer: "",
       DifficultyLevel: "",
-    })
+    });
     console.log("new row created");
-    setQuestions(questionsCopy)
-
+    setQuestions(questionsCopy);
 
     // for storing error message validation
-    const questionAnswerCopy = [...questionAnswerValidate]
+    const questionAnswerCopy = [...questionAnswerValidate];
     questionAnswerCopy.push({
       Question: "",
       Answer: "",
       DifficultyLevel: "",
-    })
+    });
 
+    console.log("new row created");
+    setquestionAnswerValidate(questionAnswerCopy);
 
-
-    console.log("new row created",);
-    setquestionAnswerValidate(questionAnswerCopy)
-
-    console.log('question and answer validation', questionAnswerCopy)
-
-  }
+    console.log("question and answer validation", questionAnswerCopy);
+  };
 
   const deleterow = (index) => {
-    const questionsCopy = [...questions]
-    questionsCopy.splice(index, 1);
+    let userval = window.confirm("are you sure to delete..?");
 
-    setQuestions(questionsCopy)
-  }
+    if (userval) {
+      const questionsCopy = [...questions];
+      questionsCopy.splice(index, 1);
+
+      setQuestions(questionsCopy);
+    }
+  };
   //Destructuring
   // const {CandidateName,Department,ClientName,InterviewLevel,Technology}=UploadData
   //Data to be shown in dropdown
@@ -272,36 +218,41 @@ function UploadQuestion(props) {
   const InterviewLevelOptions = ["Easy", "Intermediate", "Expert"];
   const TechnologyOptions = ["React JS", "Angular", "Vue JS", "Java"];
   //Data is entered into the UserData
+
   const handleChangeQuestions = (event, index) => {
     console.log("in handle change");
 
     const questionsCopy = [...questions];
 
-    const obj = questionsCopy[index]
+    const obj = questionsCopy[index];
 
-    obj[event.target.name] = event.target.value
+    obj[event.target.name] = event.target.value;
 
     questionsCopy.splice(index, 1, obj);
 
-    console.log('obj updted at index ', index, "\n object is ", obj)
+    console.log("obj updted at index ", index, "\n object is ", obj);
 
-    console.log('questionCopy', questionsCopy);
+    console.log("questionCopy", questionsCopy);
     setQuestions([...questionsCopy]);
 
+    validateQuestionAndAnswerField();
   };
 
   const handleChange = (event) => {
+    debugger;
 
-    console.log('event.target.name', event.target.name);
+    console.log("event.target.name", event.target.name);
 
-    const uploadDataCopy = { ...UploadData }
+    const uploadDataCopy = { ...UploadData };
 
-    uploadDataCopy[event.target.name] = event.target.value ? event.target.value : event.target.innerText
-
+    uploadDataCopy[event.target.name] = event.target.value
+      ? event.target.value
+      : event.target.innerText;
     console.log("upload dataCopy", uploadDataCopy);
+    setUploadData(uploadDataCopy);
 
-    setUploadData(uploadDataCopy)
-  }
+    // checking if the input is empty or not
+  };
 
   return (
     <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
@@ -326,17 +277,16 @@ function UploadQuestion(props) {
             fullWidth
             id="combo-box-demo"
             options={DepartmentOptions}
-
-
-
             renderInput={(params) => (
-              <TextField {...params} label="Department" name="Department"
-
-                onClick={(event) => {
+              <TextField
+                {...params}
+                label="Department"
+                name="Department"
+                onChange={(event) => {
                   handleChange(event);
-                }} />
+                }}
+              />
             )}
-
           />
           <p>{validation.Department}</p>
         </Grid>
@@ -351,10 +301,8 @@ function UploadQuestion(props) {
             onChange={(event) => {
               handleChange(event);
             }}
-
           />
           <p>{validation.ClientName}</p>
-
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <Autocomplete
@@ -362,99 +310,131 @@ function UploadQuestion(props) {
             id="combo-box-demo"
             options={TechnologyOptions}
             renderInput={(params) => (
-              <TextField {...params} label="Technology" name="Technology" onClick={(event) => {
-                handleChange(event);
-              }} />
+              <TextField
+                {...params}
+                label="Technology"
+                name="Technology"
+                onClick={(event) => {
+                  handleChange(event);
+                }}
+              />
             )}
           />
           <p>{validation.Technology}</p>
-
         </Grid>
       </Grid>
 
-
-
       <br></br>
 
-
       {/* Question and Answer Section */}
-      {
-        questions.map((obj, index) => {
-          return (
-            <div key={index}>
-              <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={9}>
-                  <TextField
-                    id="outlined-basic"
-                    style={{ width: "100%" }}
-                    label="Question"
-                    name="Question"
-                    onChange={(event) => {
-                      handleChangeQuestions(event, index);
-                    }}
-                  />
-                  <p>{questionAnswerValidate[index].Question}</p>
-
-                </Grid>
-
-                <Grid item xs={12} sm={6} md={3}>
-                  <Autocomplete
-                    id="combo-box-demo"
-                    options={InterviewLevelOptions}
-                    renderInput={(params) => (
-                      <TextField {...params} label="DifficultyLevel" name="DifficultyLevel" onClick={(event) => {
-                        handleChangeQuestions(event, index);
-                      }} />
-                    )}
-                  />
-                  <p>{questionAnswerValidate[index].DifficultyLevel}</p>
-
-                </Grid>
-                <Grid item xs={12} sm={6} md={9}>
-                  <TextField
-                    id="outlined-multiline-static"
-                    fullWidth
-                    label="Answer"
-                    name="Answer"
-                    multiline
-                    rows={4}
-                    onChange={(event) => {
-                      handleChangeQuestions(event, index);
-                    }}
-                  />
-                  <p>{questionAnswerValidate[index].Answer}</p>
-
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                  <Box mt={2} ml={5} display style={{
-                    marginTop: "90px",
-                    marginLeft: "24px"
-                  }}>
-                    {index === questions.length - 1 ? <Button onClick={(e) => { addrow(e, index) }} style={{ backgroundColor: '#FAA81D', }} variant="contained" startIcon={<AddCircleRounded />}>
-                      Add New
-                    </Button> :
-                      <Button onClick={() => { deleterow(index) }} style={{ backgroundColor: '#FAA81D', }} variant="contained" startIcon={<AddCircleRounded />}>
-                        delete
-                      </Button>}
-                  </Box>
-                </Grid>
+      {questions.map((obj, index) => {
+        return (
+          <div key={index}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6} md={9}>
+                <TextField
+                  id="outlined-basic"
+                  style={{ width: "100%" }}
+                  label="Question"
+                  name="Question"
+                  onChange={(event) => {
+                    handleChangeQuestions(event, index);
+                  }}
+                />
+                <p>{questionAnswerValidate[index].Question}</p>
               </Grid>
-              <br></br>
-            </div>
-          )
-        })
-      }
 
+              <Grid item xs={12} sm={6} md={3}>
+                <Autocomplete
+                  id="combo-box-demo"
+                  options={InterviewLevelOptions}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="DifficultyLevel"
+                      name="DifficultyLevel"
+                      onClick={(event) => {
+                        handleChangeQuestions(event, index);
+                      }}
+                    />
+                  )}
+                />
+                <p>{questionAnswerValidate[index].DifficultyLevel}</p>
+              </Grid>
+              <Grid item xs={12} sm={6} md={9}>
+                <TextField
+                  id="outlined-multiline-static"
+                  fullWidth
+                  label="Answer"
+                  name="Answer"
+                  multiline
+                  rows={4}
+                  onChange={(event) => {
+                    handleChangeQuestions(event, index);
+                  }}
+                />
+                <p>{questionAnswerValidate[index].Answer}</p>
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <Box
+                  mt={2}
+                  ml={5}
+                  display
+                  style={{
+                    marginTop: "90px",
+                    marginLeft: "24px",
+                  }}
+                >
+                  {index === questions.length - 1 ? (
+                    <Button
+                      onClick={(e) => {
+                        addrow(e, index);
+                      }}
+                      style={{ backgroundColor: "#FAA81D" }}
+                      variant="contained"
+                      startIcon={<AddCircleRounded />}
+                    >
+                      Add New
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => {
+                        deleterow(index);
+                      }}
+                      style={{ backgroundColor: "#FAA81D" }}
+                      variant="contained"
+                      startIcon={<AddCircleRounded />}
+                    >
+                      delete
+                    </Button>
+                  )}
+                </Box>
+              </Grid>
+            </Grid>
+            <br></br>
+          </div>
+        );
+      })}
 
-
-      <Box style={{
-        float: "right",
-      }} className="boxSubmit">
-        <Button style={{ backgroundColor: '#FAA81D' }} variant="contained" onClick={() => { onSubmitFunc() }}>Submit</Button>
+      <Box
+        style={{
+          float: "right",
+        }}
+        className="boxSubmit"
+      >
+        <Button
+          style={{ backgroundColor: "#FAA81D" }}
+          variant="contained"
+          onClick={() => {
+            onSubmitFunc();
+          }}
+        >
+          Submit
+        </Button>
       </Box>
 
       {/* { console.log('candidateName',UploadData.CandidateName)} */}
-    </Container >
+    </Container>
   );
 }
 
