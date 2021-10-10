@@ -10,14 +10,18 @@
 }
 .ans{
     display: flex;
-    padding-left: 100px;
+    padding-left: 140px;
     /* color: green; */
     text-align: justify;
     
 }
 #font
   {
-      padding-left: 40px;
+    display: flex;
+    padding-left: 70px;
+    /* color: green; */
+    text-align: justify; 
+
       /* color: cornflowerblue; */
 
   }

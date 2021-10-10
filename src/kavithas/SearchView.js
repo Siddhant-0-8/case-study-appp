@@ -97,7 +97,7 @@ function SearchView() {
   {
 
     question: '1. sunt aut facere repellat provident occaecati excepturi optio reprehenderit  ',
-    answer: ' It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.Alongside HTML and CSS, JavaScript is one of the core technologies of the World Wide Web. Over 97% of websites use it client-side for web page behavior, often incorporating third-party libraries. Most web browsers have a dedicated JavaScript engine to execute the code on the users  ',
+    answer: ' quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
 
   },
   {
@@ -157,7 +157,7 @@ function SearchView() {
   {
 
     question: '11. sunt aut facere repellat provident occaecati excepturi optio reprehenderit  ',
-    answer: ' It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.Alongside HTML and CSS, JavaScript is one of the core technologies of the World Wide Web. Over 97% of websites use it client-side for web page behavior, often incorporating third-party libraries. Most web browsers have a dedicated JavaScript engine to execute the code on the users  ',
+    answer: ' quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
 
   },
   {

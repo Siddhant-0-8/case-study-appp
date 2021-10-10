@@ -38,3 +38,43 @@
 }
 
 @import url("https://cdn.syncfusion.com/ej2/material.css");
+
+
+
+.paginationBttns{
+  /* width :80%; */
+  height: 40px;
+  margin: 15px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  color: #086288;
+  
+  
+
+
+}
+.paginationBttns a {
+  padding: 10px;
+  margin: 8px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid #FAA81D;;
+  color: #086288;
+  /* color: #FAA81D; */
+  cursor: pointer;
+}
+.paginationBttns a:hover{
+  color :#086288;
+  background-color:#FAA81D 
+
+}
+.paginationActive a{
+  /* color :white; */
+   background-color: lightblue; 
+
+}
+
+
+
+
